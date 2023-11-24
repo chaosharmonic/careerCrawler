@@ -34,7 +34,7 @@ I don't expect it to *stay* that way as I eventually flesh out the various piece
 
 * Make sure a recent version of [Deno](https://deno.land/) is installed on your operating system of choice.(I generally keep up to date w stable releases.)
 
-For now, that's it. Tasks are run using the standard task runner -- define them in `deno.jsonc` and run them using `deno task {name}`. Whatever API that I eventually flesh out around the data will eventually run in the same fashion, and if you do make use of this to do any similar data gathering on your own, you'll want to use the config file to manage these.
+For now, that's it. Dependencies are pulled in using import maps and HTTP, so you don't need to install any of them up front. And tasks are run using the standard task runner -- define them in `deno.jsonc` and run them using `deno task {name}`. Whatever API that I eventually flesh out around the data will eventually run in the same fashion, and if you do make use of this to do any similar data gathering on your own, you'll want to use the config file to manage these.
 
 I've left the one to get "who is hiring" threads from a Hacker News API intact, for example's sake. But it's not going to give you structured responses, and is really just there for the sake of having *a* task to illustrate this with. (Plus, your workflow isn't necessarily my workflow, so if you're so inclined you might find better use out of just the forum posts than I did.)
 
