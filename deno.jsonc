@@ -1,0 +1,13 @@
+{
+  "importMap": "import_map.json",
+  "tasks": {
+    "getHNJobs": "deno run --allow-read=. --allow-write=. --allow-net scripts/getHNHiringPosts.js",
+    "getIndeedJobs": "deno run -A scripts/getIndeedHiringPosts.js",
+    "getLinkedInJobs": "deno run -A scripts/getLinkedInHiringPosts.js"
+  },
+  "unstable": ["kv"], // for later
+  "fmt": {
+    "semiColons": false,
+    "singleQuote": true
+  }
+}

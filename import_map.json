@@ -1,0 +1,8 @@
+{
+  "imports": {
+    "datetime/": "https://deno.land/std/datetime/",
+    "jsonfile/": "https://deno.land/x/jsonfile@1.0.0/",
+    "deno-dom/": "https://deno.land/x/deno-dom/",
+    "astral/": "https://deno.land/x/astral/"
+  }
+}
