@@ -1,4 +1,5 @@
-// WIP. Built for
+// WIP. Mostly here for database schema, but setting up
+//  the db itself is also WIP
 
 export interface Person {
   name: string
@@ -18,7 +19,7 @@ export interface SearchSource {
   name: string
   postDate?: Date // if available
   retrievalDate: Date // this needs to account for recruiters
-  retrievalLink: string // is URL a valid TS type?
+  retrievalLink?: string // is URL a valid TS type?
 }
 
 // export interface ReviewSearchParams?
@@ -65,25 +66,36 @@ export interface InterviewQuestion {
 export interface Interview {
   round: number
   category: string // 'phone screen', 'technical', etc
-  notes: string // Markdown
+  notes: string[] // Markdown
   questions: InterviewQuestion[]
 }
 
-export interface JobPost {
+enum LifecycleStage {
+  Saved = 'saved',
+  Ignored = 'ignored',
+  Flagged = 'flagged',
+  Applied = 'applied',
+  Rejection = 'rejection',
+  Interview = 'interview',
+  Offer = 'offer',
+  Hire = 'hire'
+}
+
+export type JobPost = {
   title: string
   company: string
   location: string
-  notes: string // Markdown
+  notes?: string[] // Markdown
   sources?: JobSearchSource[]
   // prune all posts >90 days old and not at least swiped right
   //  (that date should be user-configurable)
   // entry *could* be manual, since this is kind of a CRM ofc --
   //  should maybe have something for that actually
   // duplicate stacking should be default only if associated company
-  //   isn't a recruiting firm (else, those could actually be
-  //   different jobs)
+  //  isn't a recruiting firm (else, those could actually be
+  //  different jobs)
   referral?: Person
-  // not just internal can be a recruiter
+  // not just internal; can be a recruiter
   // I might want to set person as an ID reference though
   pay?: string | number
   // probably should keep as a string, unless I can
@@ -93,11 +105,7 @@ export interface JobPost {
   applyLink?: string
   applyEmail?: string // this is different from a contact
   // because it *could* just be a generic email
-  lifecycle: string
-  // needs custom params, since not all interviews look the same
-  // this should be fleshed out w interview types and notes, too
-  //  but that can be for later, and *either way* I still need
-  //  some kind of init state
+  lifecycle?: LifecycleStage // = LifecycleStage.Saved // FIX
   shortDescription?: string
   fullDescription?: string
   interviews?: {
@@ -120,17 +128,17 @@ export interface CompanyReview {
 }
 
 export interface Company {
-  name: string // assume public-facing for now
-  // dba?: string,
+  name: string // assume public-facing name for now
+  // dba?: string
   website: string
   // locations??
-  size: number // this data should maybe be prioritized
+  size?: number // this data should maybe be prioritized
   // by source, or level of detail, or something...
   recruitingFirm?: boolean
   industry?: string // (this is loose)
   funding?: string // enum for this?
   ownership?: string // enum for this?
-  employeeReviews: CompanyReview[] // maybe also capture customer reviews
+  employeeReviews?: CompanyReview[] // maybe also capture customer reviews
   // ignorePosts: boolean, // should this be a user setting instead?
   // user settings should also include cover letter overrides
   jobs?: JobPost[] // id references?
