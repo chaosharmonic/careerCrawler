@@ -33,10 +33,10 @@ For now, that's it. Dependencies are pulled in using import maps and HTTP, so yo
 
 ### Usage
 
-The core workflow is built around using Deno's standard task runner. Currently I'm leveraging this for gathering new listings, and that'll expand as I'm 
+The core workflow is built around Deno's standard task runner -- currently I'm leveraging this for gathering new listings, and I plan on doing so further for the API I'll eventually be seeding with this (and UI I'll eventually be running on top of that).
 
-And tasks are run using the standard task runner -- define them in `deno.jsonc` and run them using `deno task {name}`. Whatever API that I eventually flesh out around the data will eventually run in the same fashion, and if you do make use of this to do any similar data gathering on your own, you'll want to use the config file to manage these.
+Tasks are defined in `deno.jsonc` and run using `deno task {name}`
 
-I've left the one to get "who is hiring" threads from a Hacker News API intact, for example's sake. But it's not going to give you structured responses, and is really just there for the sake of having *a* task to illustrate this with. (Plus, your workflow isn't necessarily my workflow, so if you're so inclined you might find better use out of just the forum posts than I did.)
+I've left the one to get "who is hiring" threads from a Hacker News API intact, for example's sake. But it's not going to give you structured responses, and is really just there for the sake of having *a* task to illustrate this with. (You might find the raw data useful to mine though.)
 
 Otherwise, what you'll want to do is modify the scraping code provided to fit your platform of choice. I've provided loose examples of scraping both paginated lists and infinite scrolls. They're based on the ones I'm using myself, but have been adapted to be a little more generic. Note that (for similar reasons to the above) this doesn't cover beating things like CAPTCHAs or nagging auth popups, so you'll have to write those handlers on your own.
