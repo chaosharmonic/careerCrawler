@@ -1,11 +1,11 @@
 {
   "importMap": "import_map.json",
   "tasks": {
-    "getHNJobs": "deno run --allow-read=. --allow-write=. --allow-net scripts/getHNHiringPosts.js",
-    "getIndeedJobs": "deno run -A scripts/getIndeedHiringPosts.js",
-    "getLinkedInJobs": "deno run -A scripts/getLinkedInHiringPosts.js"
+    "getHNJobs": "deno run --allow-read=. --allow-write=. --allow-net scripts/getHNHiringPosts.js"
+    // "scrapeInfiniteScroller": "deno run -A scripts/examples/scrapeInfiniteScroller.js",
+    // "scrapePaginatedList": "deno run -A scripts/examples/scrapePaginatedList.js"
   },
-  "unstable": ["kv"], // for later
+  "unstable": ["kv"],
   "fmt": {
     "semiColons": false,
     "singleQuote": true
